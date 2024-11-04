@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2415246734695040662}
   - component: {fileID: 459465371661595228}
   - component: {fileID: -1200118201357427532}
+  - component: {fileID: -7577193583958944743}
   m_Layer: 0
   m_Name: civil-car-A
   m_TagString: Untagged
@@ -103,6 +104,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f919f4af5ca45f845ac79926d1547850, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sensX: 0
+  sensY: 0
+  orientation: {fileID: 0}
+--- !u!114 &-7577193583958944743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2116873390560433033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c2c2282a3767794a89925ac2ccee12d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 0
+  orientation: {fileID: 0}
 --- !u!1 &7618221346131381383
 GameObject:
   m_ObjectHideFlags: 0
