@@ -13,6 +13,12 @@ public class SimplePlayerMovement : MonoBehaviour
     private float horizontalInput;
     private float verticalInput;
     private Vector3 moveDirection;
+    Rigidbody rb;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
 
     private void Update()
     {
@@ -26,7 +32,8 @@ public class SimplePlayerMovement : MonoBehaviour
       
         float currentSpeed = Input.GetKey(boostKey) ? moveSpeed * boostMultiplier : moveSpeed;
 
+rb.velocity =moveDirection.normalized * currentSpeed *150* Time.deltaTime;
+transform.rotation 
 
-        transform.position += moveDirection.normalized * currentSpeed * Time.deltaTime;
     }
 }
