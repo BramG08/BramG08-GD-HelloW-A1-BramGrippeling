@@ -33,7 +33,8 @@ public class SimplePlayerMovement : MonoBehaviour
         float currentSpeed = Input.GetKey(boostKey) ? moveSpeed * boostMultiplier : moveSpeed;
 
 rb.velocity =moveDirection.normalized * currentSpeed *150* Time.deltaTime;
-transform.rotation 
+
+
 
     }
 }
