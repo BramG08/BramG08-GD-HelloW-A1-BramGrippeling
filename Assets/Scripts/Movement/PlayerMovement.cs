@@ -33,7 +33,7 @@ public class SimplePlayerMovement : MonoBehaviour
 
         float currentSpeed = Input.GetKey(boostKey) ? moveSpeed * boostMultiplier : moveSpeed;
 
-        rb.velocity = moveDirection.normalized * currentSpeed * 150 * Time.deltaTime;
+        rb.velocity = moveDirection.normalized * currentSpeed * 250 * Time.deltaTime;
 
         if (moveDirection != Vector3.zero)
         {
