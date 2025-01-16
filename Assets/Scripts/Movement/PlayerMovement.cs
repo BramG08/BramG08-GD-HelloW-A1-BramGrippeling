@@ -1,44 +1,36 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SimplePlayerMovement : MonoBehaviour
-{ 
-    public float moveSpeed = 5f;
-    public float boostMultiplier = 2f;
-    public KeyCode boostKey = KeyCode.LeftShift; 
-    public float rotationSpeed = 10f;
+public class PlayerMovement : MonoBehaviour
+{
+    public float movementSpeed = 4;
 
-    public Transform orientation;
+    //Het animator component wordt hier gedefinieerd. 
+    //Hierdoor kunnen we deze in verschillende functies in de class gebruiken.
+    private Animator _animator;
 
-    private float horizontalInput;
-    private float verticalInput;
-    private Vector3 moveDirection;
-    Rigidbody rb;
-
-    private void Start()
+    void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        //Het animator component wordt uit het object opgehaald.
+        _animator = GetComponent<Animator>();
     }
 
-    private void Update()
-    { 
 
-        horizontalInput = Input.GetAxis("Horizontal");
-        verticalInput = Input.GetAxis("Vertical");
-
-
-        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
-
-
-        float currentSpeed = Input.GetKey(boostKey) ? moveSpeed * boostMultiplier : moveSpeed;
-
-        rb.velocity = moveDirection.normalized * currentSpeed * 250 * Time.deltaTime;
-
-        if (moveDirection != Vector3.zero)
+    void Update()
+    {
+        Vector3 movement = new Vector3(0, 0, 0);
+        if (Input.GetKey(KeyCode.W))
         {
-            Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+            movement += transform.forward * movementSpeed * Time.deltaTime;
+            _animator.SetFloat("speed", 1);
         }
+        if (Input.GetKey(KeyCode.S))
+        {
+            movement -= transform.forward * movementSpeed * Time.deltaTime;
+        }
+        transform.position += movement.normalized * movementSpeed * Time.deltaTime;
+
     }
 }
