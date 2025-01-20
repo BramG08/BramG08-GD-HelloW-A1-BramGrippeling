@@ -21,16 +21,26 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         Vector3 movement = new Vector3(0, 0, 0);
+        float msIncrease = 1;
         if (Input.GetKey(KeyCode.W))
         {
             movement += transform.forward * movementSpeed * Time.deltaTime;
             _animator.SetFloat("speed", 1);
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                msIncrease = 2;
+                _animator.SetFloat("speed", 2);
+            }
+        }
+        if (Input.GetKeyUp(KeyCode.W))
+        {
+            _animator.SetFloat("speed", 0);
         }
         if (Input.GetKey(KeyCode.S))
         {
             movement -= transform.forward * movementSpeed * Time.deltaTime;
         }
-        transform.position += movement.normalized * movementSpeed * Time.deltaTime;
+        transform.position += movement.normalized * movementSpeed * Time.deltaTime * msIncrease;
 
     }
 }
