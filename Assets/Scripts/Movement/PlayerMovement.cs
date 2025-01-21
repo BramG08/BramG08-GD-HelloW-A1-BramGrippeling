@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     //Hierdoor kunnen we deze in verschillende functies in de class gebruiken.
     private Animator _animator;
     private Rigidbody _rigidbody;
+    private bool isGrounded;
     void Start()
     {
         //Het animator component wordt uit het object opgehaald.
@@ -18,7 +19,6 @@ public class PlayerMovement : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
     }
 
-    public bool isGrounded;
     void OnCollisionStay()
     {
         isGrounded = true;
@@ -56,9 +56,18 @@ public class PlayerMovement : MonoBehaviour
             transform.Rotate(0, 1, 0);
         }
         transform.position += movement.normalized * movementSpeed * Time.deltaTime * msIncrease;
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space) && isGrounded)
         {
-            _rigidbody.AddForce(Vector3.up * 15);
+            _rigidbody.AddForce(Vector3.up * 125);
+            isGrounded = false;
+            _animator.SetTrigger("onJump");
+
         }
+        else if (isGrounded)
+        {
+            _animator.ResetTrigger("onJump");
+        }
+
+        
     }
 }
