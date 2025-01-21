@@ -10,11 +10,18 @@ public class PlayerMovement : MonoBehaviour
     //Het animator component wordt hier gedefinieerd. 
     //Hierdoor kunnen we deze in verschillende functies in de class gebruiken.
     private Animator _animator;
-
+    private Rigidbody _rigidbody;
     void Start()
     {
         //Het animator component wordt uit het object opgehaald.
         _animator = GetComponent<Animator>();
+        _rigidbody = GetComponent<Rigidbody>();
+    }
+
+    public bool isGrounded;
+    void OnCollisionStay()
+    {
+        isGrounded = true;
     }
 
 
@@ -40,7 +47,18 @@ public class PlayerMovement : MonoBehaviour
         {
             movement -= transform.forward * movementSpeed * Time.deltaTime;
         }
+        if (Input.GetKey(KeyCode.A))
+        {
+            transform.Rotate(0, -1, 0);
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            transform.Rotate(0, 1, 0);
+        }
         transform.position += movement.normalized * movementSpeed * Time.deltaTime * msIncrease;
-
+        if (Input.GetKey(KeyCode.Space))
+        {
+            _rigidbody.AddForce(Vector3.up * 15);
+        }
     }
 }
