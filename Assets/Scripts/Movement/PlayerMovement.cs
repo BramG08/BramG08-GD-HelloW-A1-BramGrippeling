@@ -60,12 +60,12 @@ public class PlayerMovement : MonoBehaviour
         {
             _rigidbody.AddForce(Vector3.up * 125);
             isGrounded = false;
-            _animator.SetTrigger("onJump");
+            _animator.SetTrigger("Jump");
 
         }
         else if (isGrounded)
         {
-            _animator.ResetTrigger("onJump");
+            _animator.ResetTrigger("Jump");
         }
 
         
